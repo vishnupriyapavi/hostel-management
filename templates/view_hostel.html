@@ -1,0 +1,44 @@
+{% extends 'admin.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">hostel</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>sl No.</th>
+                          <th>hostel_name</th>
+                          <th>location</th>
+                          <th>fee_details</th>
+                          <th>room_details</th>
+                          <th>contact_no</th>
+                          <th>hostel_image</th>
+                          <th>update/delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td class="py-1">{{forloop.counter}}</td>
+                          <td>{{i.hostel_name}}</td>
+                          <td>{{i.location}}</td>
+                          <td>{{i.fee_details}}</td>
+                          <td>{{i.room_details}}</td>
+                          <td>{{i.contact_no}}</td>
+                          <td><img src="{{i.hostel_image.url}}"></td>
+                          <td><a class="btn btn-success" href="{% url 'hostel_update' i.id %}">Update</a>
+                            <a class="btn btn-danger" href="{% url 'hostel_delete' i.id %}">Delete</a>
+                          </td>
+
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
